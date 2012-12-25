@@ -1,0 +1,96 @@
+/*breadcrumb*/
+.takien_breadcrumb{
+}
+.takien_breadcrumb ul,
+.takien_breadcrumb ul li{
+	margin:0;
+	padding:0;
+	}
+.takien_breadcrumb a{
+	padding:0 15px 0 5px;
+	text-decoration:none;
+	color: #3e7bbc;
+	font-weight:bold;
+	font-family: Arial,Helvetica,Verdana,sans-serif;
+	display: inline-block;
+	font-size: 11px;
+	position: relative;
+	vertical-align: middle;
+}
+.takien_breadcrumb .bc-parent-with-ul>a{
+	background:url(images/arrow.gif) no-repeat top right;
+}
+.takien_breadcrumb .bc-parent-with-ul:hover a,
+.takien_breadcrumb .bc-parent-with-ul  a:hover{
+	background-position:bottom right
+}
+.takien_breadcrumb a:active {
+}
+.takien_breadcrumb .first a,
+.takien_breadcrumb .first a:link,
+.takien_breadcrumb .first a:visited {
+	padding-left:0
+}
+
+.takien_breadcrumb .first-breadcrumb {
+	padding: 0;
+	z-index: 201;
+}
+.takien_breadcrumb{
+	font-size:13px;
+	color:#999999
+}
+
+.takien_breadcrumb li{
+	 display:inline; 
+	 position:relative; 
+}
+.takien_breadcrumb li ul{
+	display:none;
+	position:absolute;
+	left:0;
+	padding:0;
+	background:#fafafa;
+	border:1px solid #dadada;
+	z-index:100;
+}
+
+.takien_breadcrumb li ul.children{
+	left:100px;
+	top:0; 
+}
+.takien_breadcrumb li ul.children li{
+	position:relative; 
+}
+
+.takien_breadcrumb li ul li{
+	display:block;
+	width:auto;
+	padding:0;
+	margin:0;
+	background:none;
+}
+.takien_breadcrumb li ul li a{
+	display:block;
+	margin:0;
+	padding:3px 10px;
+	background:none;
+	word-wrap:normal;
+	white-space:nowrap;
+	color: #92949e;
+}
+.takien_breadcrumb li ul li a:hover{
+	background:#eeeeee;
+	color:#3ea5ff;
+	text-decoration:none
+}
+
+/*separator*/
+.takien-breadcrumb-separator{
+	display:none;
+	padding-left:8px;
+	background:url(images/arrow.gif) no-repeat top left;
+	text-indent:-30px;
+	width:13px;
+	overflow:hidden;
+}
