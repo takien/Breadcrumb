@@ -95,7 +95,7 @@ if (!class_exists('TakienBreadcrumb')) {
 		$arg_separator = '<span class="takien-breadcrumb-separator">'.$arg_separator.'</span>';
 		$return = '';
 		$return .= '<'.$arg_wrap.' id='.$arg_wrap_id.' class="'.$arg_wrap_class.'" itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><ul>'."\r\n";
-		$return .= $arg_show_home ? '<li class="first"><a style="z-index:'.$topzindex.'" href="'.site_url('/').'" title="'.get_bloginfo('name').'"><span class="first-breadcrumb"/>'.$arg_home_text.$arg_separator.'</a></li>'."\r\n" : '';
+		$return .= $arg_show_home ? '<li class="first"><a style="z-index:'.$topzindex.'" href="'.site_url('/').'" title="'.get_bloginfo('name').'"><span class="first-breadcrumb">'.$arg_home_text.$arg_separator.'</span></a></li>'."\r\n" : '';
 
 
 		if(is_single()){
@@ -109,22 +109,22 @@ if (!class_exists('TakienBreadcrumb')) {
 			
 			foreach((array)$all_taxonomies as $taxs){
 				$all_terms = wp_get_object_terms($post->ID, $taxs->name);
-					foreach((array)$all_terms as $term){
-						if($term->taxonomy == $arg_default_taxonomy){
-							$term_id  		= $term->term_id;
-							$taxonomy_name	= $term->taxonomy;
-							$tax_label		= $taxs->labels->singular_name;
-							
-							if($term->parent == 0){
-								$term_id  		= $term_id ? $term_id 	: $term->term_id;	
-								$taxonomy_name 	= $taxonomy_name ? $taxonomy_name 	: $term->taxonomy;
-								$tax_label		= $tax_label ? $tax_label	: $taxs->labels->singular_name;
-							}
+				foreach((array)$all_terms as $term){
+					if($term->taxonomy == $arg_default_taxonomy){
+						$term_id  		= $term->term_id;
+						$taxonomy_name	= $term->taxonomy;
+						$tax_label		= $taxs->labels->singular_name;
+						
+						if($term->parent == 0){
+							$term_id  		= $term_id ? $term_id 	: $term->term_id;	
+							$taxonomy_name 	= $taxonomy_name ? $taxonomy_name 	: $term->taxonomy;
+							$tax_label		= $tax_label ? $tax_label	: $taxs->labels->singular_name;
 						}
-						$term_id  		= $term_id 			? $term_id 			: $term->term_id;	
-						$taxonomy_name 	= $taxonomy_name 	? $taxonomy_name 	: $term->taxonomy;
-						$tax_label		= $tax_label 		? $tax_label		: $taxs->labels->singular_name;
 					}
+					$term_id       = $term_id ? $term_id : $term->term_id;	
+					$taxonomy_name = $taxonomy_name ? $taxonomy_name : $term->taxonomy;
+					$tax_label     = $tax_label ? $tax_label: $taxs->labels->singular_name;
+				}
 			}
 			if(is_attachment()){
 				$return .= $this->takien_build_link(get_permalink($post->post_parent),$zindex=($zindex-1),get_the_title($post->post_parent),$arg_separator,false,true);
@@ -347,7 +347,7 @@ if (!class_exists('TakienBreadcrumb')) {
 		$childchain .= "\t\t".'</ul>'."\r\n";
 			
 		$child 	= $childcats ? $childchain : false;
-		$chain .= $this->takien_build_link(get_category_link( $parent->term_id ),$zindex=($zindex-1),$name,$separator,$child,true);
+		$chain .= $this->takien_build_link(get_term_link( $parent, $taxonomy ),$zindex=($zindex-1),$name,$separator,$child,true);
 		
 		return $childonly ? $child : $chain;
 	}
